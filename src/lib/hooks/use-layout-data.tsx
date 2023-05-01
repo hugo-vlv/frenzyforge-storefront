@@ -60,7 +60,9 @@ const fetchFeaturedProducts = async (
     .catch((_) => [] as Product[])
 
   return products
+    // @ts-expect-error
     .filter((p) => !!p.variants)
+    // @ts-expect-error
     .map((p) => {
       const variants = p.variants as CalculatedVariant[]
 

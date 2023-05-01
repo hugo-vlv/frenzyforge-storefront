@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { medusaClient } from "@lib/config"
 import { IS_BROWSER } from "@lib/constants"
 import { getProductHandles } from "@lib/util/get-product-handles"

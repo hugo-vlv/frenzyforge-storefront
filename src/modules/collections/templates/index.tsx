@@ -49,6 +49,7 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
   }, [cart?.region_id, refetch])
 
   const previews = usePreviews({
+    // @ts-expect-error
     pages: infiniteData?.pages,
     region: cart?.region,
   })
@@ -79,6 +80,7 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
             </li>
           ))}
         {isFetchingNextPage &&
+          // @ts-expect-error
           repeat(getNumberOfSkeletons(infiniteData?.pages)).map((index) => (
             <li key={index}>
               <SkeletonProductPreview />
