@@ -15,7 +15,7 @@ const getFeaturedProducts = async (): Promise<Product[]> => {
   const products = await medusaClient.products
     .list(payload)
     .then(({ products }) => products)
-    .catch((_) => [])
+    .catch((_) => []) as Product[]
 
   return products
 }
