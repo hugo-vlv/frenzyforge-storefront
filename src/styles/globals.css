@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: rgb(49, 32, 33);
+  --color-secondary: rgb(240, 230, 208);
+  --color-transparent: transparent;
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

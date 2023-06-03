@@ -1,0 +1,19 @@
+.nav {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background-color: var(--color-transparent);
+    border-color: transparent;
+    height: 6.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+}
+
+.navScrolled {
+    background-color: var(--color-secondary);
+}

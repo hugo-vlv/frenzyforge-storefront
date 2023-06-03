@@ -2,6 +2,8 @@ import Spinner from "@modules/common/icons/spinner"
 import clsx from "clsx"
 import React from "react"
 
+import styles from './index.module.css';
+
 type ButtonProps = {
   isLoading?: boolean
   variant?: "primary" | "secondary"
@@ -25,7 +27,8 @@ const Button = ({
           "text-gray-900 bg-transparent border-gray-920 hover:bg-gray-100":
             variant === "secondary",
         },
-        className
+        className,
+        styles.btn
       )}
     >
       {isLoading ? <Spinner /> : children}

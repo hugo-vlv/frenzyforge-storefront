@@ -6,11 +6,14 @@ import {
 import repeat from "@lib/util/repeat"
 import ProductPreview from "@modules/products/components/product-preview"
 import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview"
+import Hamburger from "@modules/common/components/hamburger"
 import clsx from "clsx"
 import { chunk } from "lodash"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
+
+import styles from './index.module.css'
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState(false)
@@ -37,7 +40,7 @@ const DropdownMenu = () => {
                   )}
                   onClick={() => push("/store")}
                 >
-                  Store
+                  <Hamburger barWidth={6} barHeight={0.5} />
                 </Popover.Button>
               </a>
             </Link>
@@ -45,16 +48,16 @@ const DropdownMenu = () => {
             <Transition
               show={open}
               as={React.Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
+              enter="transition ease-out duration-300"
+              enterFrom={styles.dropMenuClosed}
+              enterTo={styles.dropMenuOpened}
+              leave="transition ease-in duration-300"
+              leaveFrom={styles.dropMenuOpened}
+              leaveTo={styles.dropMenuClosed}
             >
               <Popover.Panel
                 static
-                className="absolute top-full inset-x-0 text-sm text-gray-700 z-30 border-y border-gray-200"
+                className={`absolute top-full inset-x-0 text-sm text-gray-700 border-y border-gray-200 ${styles.popoverPanel}`}
               >
                 <div className="relative bg-white py-8">
                   <div className="flex items-start content-container">

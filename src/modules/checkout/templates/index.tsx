@@ -34,9 +34,6 @@ const CheckoutTemplate = () => {
             <CheckoutSummary />
           </div>
         </div>
-        <div className="py-4 w-full flex items-center justify-center">
-          <MedusaCTA />
-        </div>
       </div>
     </CheckoutProvider>
   )

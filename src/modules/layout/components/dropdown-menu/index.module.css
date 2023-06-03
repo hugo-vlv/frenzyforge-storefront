@@ -1,0 +1,11 @@
+.popoverPanel {
+    z-index: 20;
+}
+
+.dropMenuClosed {
+    transform: translateX(-100%);
+}
+
+.dropMenuOpened {
+    transform: translateX(0);
+}
