@@ -26,49 +26,49 @@ const Nav = () => {
   const { toggle } = useMobileMenu()
 
   return (
-      <header className={clsx(styles.nav, { [styles.navScrolled]: !isScrollTop })}>
-        <nav
-          className={clsx("text-gray-900 flex items-center justify-between w-full h-full transition-colors duration-200")}
-        >
-          <div className="flex-1 basis-0 h-full flex items-center">
-            <div className="block small:hidden">
-              <Hamburger setOpen={toggle} />
-            </div>
-            <div className="hidden small:block h-full">
-              <DropdownMenu />
-            </div>
+    <header className={clsx(styles.nav, { [styles.navScrolled]: !isScrollTop })}>
+      <nav
+        className={clsx("text-gray-900 flex items-center justify-between w-full h-full transition-colors duration-200")}
+      >
+        <div className="flex-1 basis-0 h-full flex items-center">
+          <div className="block small:hidden">
+            <Hamburger setOpen={toggle} />
           </div>
+          <div className="hidden small:block h-full">
+            <DropdownMenu />
+          </div>
+        </div>
 
-          <div className="flex items-center h-full">
-            <Link href="/">
-              <a className="relative h-20 w-20">
-                <Image
-                  src="/logo_cropped.png"
-                  layout='fill'
-                  loading="eager"
-                  priority={true}
-                  objectFit="cover"
-                  alt="Photo by @thevoncomplex https://unsplash.com/@thevoncomplex"
-                  className="absolute inset-0"
-                  draggable="false"
-                />
-              </a>
+        <div className="flex items-center h-full">
+          <Link passHref href="/" className="relative h-20 w-20">
+
+            <Image
+              src="/logo_cropped.png"
+              layout='fill'
+              loading="eager"
+              priority={true}
+              objectFit="cover"
+              alt="Photo by @thevoncomplex https://unsplash.com/@thevoncomplex"
+              className="absolute inset-0"
+              draggable="false"
+            />
+
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+          <div className="hidden small:flex items-center gap-x-6 h-full">
+            {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
+            <Link href="/contact" className='text-sm-regular'>
+              Contact
             </Link>
           </div>
-
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full">
-              {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
-              <Link href="/contact">
-                <a className='text-sm-regular'>Contact</a>
-              </Link>
-            </div>
-            {/* <CartDropdown /> */}
-          </div>
-        </nav>
-        <MobileMenu />
-      </header>
-  )
+          {/* <CartDropdown /> */}
+        </div>
+      </nav>
+      <MobileMenu />
+    </header>
+  );
 }
 
 export default Nav

@@ -32,17 +32,17 @@ const DropdownMenu = () => {
       <div className="flex items-center h-full">
         <Popover className="h-full flex">
           <>
-            <Link href="/shop" passHref>
-              <a className="relative flex h-full">
-                <Popover.Button
-                  className={clsx(
-                    "relative h-full flex items-center transition-all ease-out duration-200"
-                  )}
-                  onClick={() => push("/store")}
-                >
-                  <Hamburger barWidth={6} barHeight={0.5} />
-                </Popover.Button>
-              </a>
+            <Link href="/shop" passHref className="relative flex h-full">
+
+              <Popover.Button
+                className={clsx(
+                  "relative h-full flex items-center transition-all ease-out duration-200"
+                )}
+                onClick={() => push("/store")}
+              >
+                <Hamburger barWidth={6} barHeight={0.5} />
+              </Popover.Button>
+
             </Link>
 
             <Transition
@@ -76,18 +76,16 @@ const DropdownMenu = () => {
                                 {chunk.map((collection) => {
                                   return (
                                     <div key={collection.id} className="pb-3">
-                                      <Link
-                                        href={`/collections/${collection.id}`}
-                                      >
-                                        <a onClick={() => setOpen(false)}>
-                                          {collection.title}
-                                        </a>
+                                      <Link href={`/collections/${collection.id}`} onClick={() => setOpen(false)}>
+
+                                        {collection.title}
+
                                       </Link>
                                     </div>
-                                  )
+                                  );
                                 })}
                               </ul>
-                            )
+                            );
                           })}
                         {loadingCollections &&
                           repeat(6).map((index) => (
@@ -117,7 +115,7 @@ const DropdownMenu = () => {
         </Popover>
       </div>
     </div>
-  )
+  );
 }
 
 export default DropdownMenu

@@ -11,14 +11,14 @@ const SignInPrompt = () => {
         </p>
       </div>
       <div>
-        <Link href="/account/login">
-          <a>
-            <Button variant="secondary">Sign in</Button>
-          </a>
+        <Link passHref href="/account/login">
+
+          <Button variant="secondary">Sign in</Button>
+
         </Link>
       </div>
     </div>
-  )
+  );
 }
 
 export default SignInPrompt
