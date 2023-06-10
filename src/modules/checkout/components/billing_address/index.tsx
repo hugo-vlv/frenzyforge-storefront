@@ -5,7 +5,7 @@ import CountrySelect from "../country-select";
 
 const BillingAddress = () => {
   return (
-    <ConnectForm<CheckoutFormValues>>
+    <ConnectForm>
       {({ register, formState: { errors, touchedFields } }) => (
         <div className="grid grid-cols-1 gap-y-2">
           <div className="grid grid-cols-2 gap-x-2">

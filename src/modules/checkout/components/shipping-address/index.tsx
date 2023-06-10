@@ -1,4 +1,3 @@
-import { CheckoutFormValues } from "@lib/context/checkout-context";
 import { emailRegex } from "@lib/util/regex";
 import ConnectForm from "@modules/common/components/connect-form";
 import Input from "@modules/common/components/input";
@@ -18,7 +17,7 @@ const ShippingAddress = () => {
           <AddressSelect addresses={customer.shipping_addresses} />
         </div>
       )}
-      <ConnectForm<CheckoutFormValues>>
+      <ConnectForm>
         {({ register, formState: { errors, touchedFields } }) => (
           <div className="grid grid-cols-1 gap-y-2">
             <Input
