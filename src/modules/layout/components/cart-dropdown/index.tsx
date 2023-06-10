@@ -1,21 +1,21 @@
-import { Popover, Transition } from "@headlessui/react"
-import { useCartDropdown } from "@lib/context/cart-dropdown-context"
-import { useStore } from "@lib/context/store-context"
-import useEnrichedLineItems from "@lib/hooks/use-enrich-line-items"
-import Button from "@modules/common/components/button"
-import LineItemOptions from "@modules/common/components/line-item-options"
-import LineItemPrice from "@modules/common/components/line-item-price"
-import Trash from "@modules/common/icons/trash"
-import Thumbnail from "@modules/products/components/thumbnail"
-import { formatAmount, useCart } from "medusa-react"
-import Link from "next/link"
-import { Fragment } from "react"
+import { Popover, Transition } from "@headlessui/react";
+import { useCartDropdown } from "@lib/context/cart-dropdown-context";
+import { useStore } from "@lib/context/store-context";
+import useEnrichedLineItems from "@lib/hooks/use-enrich-line-items";
+import Button from "@modules/common/components/button";
+import LineItemOptions from "@modules/common/components/line-item-options";
+import LineItemPrice from "@modules/common/components/line-item-price";
+import Trash from "@modules/common/icons/trash";
+import Thumbnail from "@modules/products/components/thumbnail";
+import { formatAmount, useCart } from "medusa-react";
+import Link from "next/link";
+import { Fragment } from "react";
 
 const CartDropdown = () => {
-  const { cart, totalItems } = useCart()
-  const items = useEnrichedLineItems()
-  const { deleteItem } = useStore()
-  const { state, open, close } = useCartDropdown()
+  const { cart, totalItems } = useCart();
+  const items = useEnrichedLineItems();
+  const { deleteItem } = useStore();
+  const { state, open, close } = useCartDropdown();
 
   return (
     <div className="h-full z-50" onMouseEnter={open} onMouseLeave={close}>
@@ -45,7 +45,7 @@ const CartDropdown = () => {
                 <div className="overflow-y-scroll max-h-[402px] px-4 grid grid-cols-1 gap-y-8 no-scrollbar">
                   {items
                     .sort((a, b) => {
-                      return a.created_at > b.created_at ? -1 : 1
+                      return a.created_at > b.created_at ? -1 : 1;
                     })
                     .map((item) => (
                       <div
@@ -137,6 +137,6 @@ const CartDropdown = () => {
       </Popover>
     </div>
   );
-}
+};
 
-export default CartDropdown
+export default CartDropdown;

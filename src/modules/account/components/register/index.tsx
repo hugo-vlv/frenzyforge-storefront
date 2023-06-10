@@ -1,12 +1,12 @@
-import { medusaClient } from "@lib/config"
-import { LOGIN_VIEW, useAccount } from "@lib/context/account-context"
-import Button from "@modules/common/components/button"
-import Input from "@modules/common/components/input"
-import Spinner from "@modules/common/icons/spinner"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { useState } from "react"
-import { FieldValues, useForm } from "react-hook-form"
+import { medusaClient } from "@lib/config";
+import { LOGIN_VIEW, useAccount } from "@lib/context/account-context";
+import Button from "@modules/common/components/button";
+import Input from "@modules/common/components/input";
+import Spinner from "@modules/common/icons/spinner";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 
 interface RegisterCredentials extends FieldValues {
   first_name: string
@@ -17,30 +17,30 @@ interface RegisterCredentials extends FieldValues {
 }
 
 const Register = () => {
-  const { loginView, refetchCustomer } = useAccount()
-  const [_, setCurrentView] = loginView
-  const [authError, setAuthError] = useState<string | undefined>(undefined)
-  const router = useRouter()
+  const { loginView, refetchCustomer } = useAccount();
+  const [_, setCurrentView] = loginView;
+  const [authError, setAuthError] = useState<string | undefined>(undefined);
+  const router = useRouter();
 
   const handleError = (e: Error) => {
-    setAuthError("An error occured. Please try again.")
-  }
+    setAuthError("An error occured. Please try again.");
+  };
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<RegisterCredentials>()
+  } = useForm<RegisterCredentials>();
 
   const onSubmit = handleSubmit(async (credentials) => {
     await medusaClient.customers
       .create(credentials)
       .then(() => {
-        refetchCustomer()
-        router.push("/account")
+        refetchCustomer();
+        router.push("/account");
       })
-      .catch(handleError)
-  })
+      .catch(handleError);
+  });
 
   return (
     <div className="max-w-sm flex flex-col items-center mt-12">
@@ -122,6 +122,6 @@ const Register = () => {
       </span>
     </div>
   );
-}
+};
 
-export default Register
+export default Register;

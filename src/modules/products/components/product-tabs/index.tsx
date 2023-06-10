@@ -1,10 +1,10 @@
-import { Tab } from "@headlessui/react"
-import { Product } from "@medusajs/medusa"
-import Back from "@modules/common/icons/back"
-import FastDelivery from "@modules/common/icons/fast-delivery"
-import Refresh from "@modules/common/icons/refresh"
-import clsx from "clsx"
-import { useMemo } from "react"
+import { Tab } from "@headlessui/react";
+import { Product } from "@medusajs/medusa";
+import Back from "@modules/common/icons/back";
+import FastDelivery from "@modules/common/icons/fast-delivery";
+import Refresh from "@modules/common/icons/refresh";
+import clsx from "clsx";
+import { useMemo } from "react";
 
 type ProductTabsProps = {
   product: Product
@@ -21,8 +21,8 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
         label: "Shipping & Returns",
         component: <ShippingInfoTab />,
       },
-    ]
-  }, [product])
+    ];
+  }, [product]);
 
   return (
     <div>
@@ -43,18 +43,18 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
               >
                 {tab.label}
               </Tab>
-            )
+            );
           })}
         </Tab.List>
         <Tab.Panels>
           {tabs.map((tab, j) => {
-            return <div key={j}>{tab.component}</div>
+            return <div key={j}>{tab.component}</div>;
           })}
         </Tab.Panels>
       </Tab.Group>
     </div>
-  )
-}
+  );
+};
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
@@ -95,8 +95,8 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
         </div>
       ) : null}
     </Tab.Panel>
-  )
-}
+  );
+};
 
 const ShippingInfoTab = () => {
   return (
@@ -135,7 +135,7 @@ const ShippingInfoTab = () => {
         </div>
       </div>
     </Tab.Panel>
-  )
-}
+  );
+};
 
-export default ProductTabs
+export default ProductTabs;

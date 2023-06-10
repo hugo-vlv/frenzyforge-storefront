@@ -1,0 +1,16 @@
+{
+    "home": {
+        "title": "Accueil",
+        "hero": {
+            "header": "Hero en tête statique"
+        }
+    },
+    "footer": {
+        "sections": {
+            "collections": {
+                "title": "Catégories"
+            }
+        },
+        "switchLanguage": "Langue:"
+    }
+}

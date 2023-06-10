@@ -1,6 +1,6 @@
-import { ProductVariant } from "@medusajs/medusa"
-import Thumbnail from "@modules/products/components/thumbnail"
-import Link from "next/link"
+import { ProductVariant } from "@medusajs/medusa";
+import Thumbnail from "@modules/products/components/thumbnail";
+import Link from "next/link";
 
 export type ProductHit = {
   id: string
@@ -40,6 +40,6 @@ const Hit = ({ hit }: HitProps) => {
       </div>
     </div>
   );
-}
+};
 
-export default Hit
+export default Hit;

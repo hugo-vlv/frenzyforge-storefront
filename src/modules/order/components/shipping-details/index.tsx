@@ -1,4 +1,4 @@
-import { Address, ShippingMethod } from "@medusajs/medusa"
+import { Address, ShippingMethod } from "@medusajs/medusa";
 
 type ShippingDetailsProps = {
   address: Address
@@ -27,12 +27,12 @@ const ShippingDetails = ({
         <h3 className="text-small-regular text-gray-700">Delivery method</h3>
         <div>
           {shippingMethods.map((sm) => {
-            return <div key={sm.id}>{sm.shipping_option.name}</div>
+            return <div key={sm.id}>{sm.shipping_option.name}</div>;
           })}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ShippingDetails
+export default ShippingDetails;

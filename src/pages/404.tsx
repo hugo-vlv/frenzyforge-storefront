@@ -1,8 +1,10 @@
-import Head from "@modules/common/components/head"
-import Layout from "@modules/layout/templates"
-import Link from "next/link"
-import { ReactElement } from "react"
-import { NextPageWithLayout } from "types/global"
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from "@modules/common/components/head";
+import Layout from "@modules/layout/templates";
+import Link from "next/link";
+import { ReactElement } from "react";
+import { NextPageWithLayout } from "types/global";
 
 const NotFound: NextPageWithLayout = () => {
   return <>
@@ -19,10 +21,21 @@ const NotFound: NextPageWithLayout = () => {
       </Link>
     </div>
   </>;
-}
+};
 
 NotFound.getLayout = (page: ReactElement) => {
-  return <Layout>{page}</Layout>
-}
+  return <Layout>{page}</Layout>;
+};
 
-export default NotFound
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { locale } = context;
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || '', [
+        'common',
+      ])),
+    },
+  };
+};
+
+export default NotFound;

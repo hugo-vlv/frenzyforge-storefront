@@ -1,9 +1,9 @@
-import { useCheckout } from "@lib/context/checkout-context"
-import Button from "@modules/common/components/button"
-import Checkbox from "@modules/common/components/checkbox"
-import Spinner from "@modules/common/icons/spinner"
-import BillingAddress from "../billing_address"
-import ShippingAddress from "../shipping-address"
+import { useCheckout } from "@lib/context/checkout-context";
+import Button from "@modules/common/components/button";
+import Checkbox from "@modules/common/components/checkbox";
+import Spinner from "@modules/common/icons/spinner";
+import BillingAddress from "../billing_address";
+import ShippingAddress from "../shipping-address";
 
 const Addresses = () => {
   const {
@@ -12,7 +12,7 @@ const Addresses = () => {
     setAddresses,
     handleSubmit,
     cart,
-  } = useCheckout()
+  } = useCheckout();
   return (
     <div className="bg-white">
       <div className="text-xl-semi flex items-center gap-x-4 px-8 pb-6 pt-8">
@@ -150,7 +150,7 @@ const Addresses = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Addresses
+export default Addresses;

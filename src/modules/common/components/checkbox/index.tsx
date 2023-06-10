@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 type CheckboxProps = {
   checked?: boolean
@@ -28,7 +28,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
       </div>
       <span>{label}</span>
     </button>
-  )
-}
+  );
+};
 
-export default Checkbox
+export default Checkbox;

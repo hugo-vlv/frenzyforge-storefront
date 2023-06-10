@@ -1,7 +1,7 @@
-import clsx from "clsx"
-import Link from "next/link"
-import { ProductPreviewType } from "types/global"
-import Thumbnail from "../thumbnail"
+import clsx from "clsx";
+import Link from "next/link";
+import { ProductPreviewType } from "types/global";
+import Thumbnail from "../thumbnail";
 
 const ProductPreview = ({
   title,
@@ -41,6 +41,6 @@ const ProductPreview = ({
 
     </Link>)
   );
-}
+};
 
-export default ProductPreview
+export default ProductPreview;

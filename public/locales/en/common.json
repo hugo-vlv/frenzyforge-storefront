@@ -1,0 +1,16 @@
+{
+    "home": {
+        "title": "Home",
+        "hero": {
+            "header": "Hero header placeholder"
+        }
+    },
+    "footer": {
+        "sections": {
+            "collections": {
+                "title": "Collections"
+            }
+        },
+        "switchLanguage": "Region:"
+    }
+}

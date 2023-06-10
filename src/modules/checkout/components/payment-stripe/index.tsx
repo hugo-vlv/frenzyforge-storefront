@@ -2,13 +2,13 @@ import {
   CardCvcElement,
   CardExpiryElement,
   CardNumberElement,
-} from "@stripe/react-stripe-js"
+} from "@stripe/react-stripe-js";
 import {
   StripeCardCvcElementOptions,
   StripeCardExpiryElementOptions,
   StripeCardNumberElementOptions,
-} from "@stripe/stripe-js"
-import React, { useMemo } from "react"
+} from "@stripe/stripe-js";
+import React, { useMemo } from "react";
 
 const PaymentStripe: React.FC = () => {
   const useOptions:
@@ -26,8 +26,8 @@ const PaymentStripe: React.FC = () => {
           },
         },
       },
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <div>
@@ -39,8 +39,8 @@ const PaymentStripe: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const CardNumber = ({
   options,
@@ -54,8 +54,8 @@ const CardNumber = ({
       </span>
       <CardNumberElement options={options} />
     </div>
-  )
-}
+  );
+};
 
 const CardExpiry = ({
   options,
@@ -69,8 +69,8 @@ const CardExpiry = ({
       </span>
       <CardExpiryElement options={options} />
     </div>
-  )
-}
+  );
+};
 
 const CardCVC = ({ options }: { options: StripeCardCvcElementOptions }) => {
   return (
@@ -80,7 +80,7 @@ const CardCVC = ({ options }: { options: StripeCardCvcElementOptions }) => {
       </span>
       <CardCvcElement options={{ ...options, placeholder: "123" }} />
     </div>
-  )
-}
+  );
+};
 
-export default PaymentStripe
+export default PaymentStripe;

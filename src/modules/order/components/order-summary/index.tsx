@@ -1,5 +1,5 @@
-import { Order } from "@medusajs/medusa"
-import { formatAmount } from "medusa-react"
+import { Order } from "@medusajs/medusa";
+import { formatAmount } from "medusa-react";
 
 type OrderSummaryProps = {
   order: Order
@@ -8,11 +8,11 @@ type OrderSummaryProps = {
 const OrderSummary = ({ order }: OrderSummaryProps) => {
   const getAmount = (amount?: number | null) => {
     if (!amount) {
-      return
+      return;
     }
 
-    return formatAmount({ amount, region: order.region, includeTaxes: false })
-  }
+    return formatAmount({ amount, region: order.region, includeTaxes: false });
+  };
 
   return (
     <div>
@@ -51,7 +51,7 @@ const OrderSummary = ({ order }: OrderSummaryProps) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrderSummary
+export default OrderSummary;

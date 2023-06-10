@@ -1,8 +1,8 @@
-import { Image as MedusaImage } from "@medusajs/medusa"
-import PlaceholderImage from "@modules/common/icons/placeholder-image"
-import clsx from "clsx"
-import Image from "next/image"
-import React from "react"
+import { Image as MedusaImage } from "@medusajs/medusa";
+import PlaceholderImage from "@modules/common/icons/placeholder-image";
+import clsx from "clsx";
+import Image from "next/image";
+import React from "react";
 
 type ThumbnailProps = {
   thumbnail?: string | null
@@ -15,7 +15,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   images,
   size = "small",
 }) => {
-  const initialImage = thumbnail || images?.[0]?.url
+  const initialImage = thumbnail || images?.[0]?.url;
 
   return (
     <div
@@ -28,8 +28,8 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
     >
       <ImageOrPlaceholder image={initialImage} size={size} />
     </div>
-  )
-}
+  );
+};
 
 const ImageOrPlaceholder = ({
   image,
@@ -49,7 +49,7 @@ const ImageOrPlaceholder = ({
     <div className="w-full h-full absolute inset-0 bg-gray-100 flex items-center justify-center">
       <PlaceholderImage size={size === "small" ? 16 : 24} />
     </div>
-  )
-}
+  );
+};
 
-export default Thumbnail
+export default Thumbnail;

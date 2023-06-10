@@ -1,10 +1,10 @@
-import { useFeaturedProductsQuery } from "@lib/hooks/use-layout-data"
-import UnderlineLink from "@modules/common/components/underline-link"
-import ProductPreview from "@modules/products/components/product-preview"
-import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview"
+import { useFeaturedProductsQuery } from "@lib/hooks/use-layout-data";
+import UnderlineLink from "@modules/common/components/underline-link";
+import ProductPreview from "@modules/products/components/product-preview";
+import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview";
 
 const FeaturedProducts = () => {
-  const { data } = useFeaturedProductsQuery()
+  const { data } = useFeaturedProductsQuery();
 
   return (
     <div className="py-12">
@@ -33,7 +33,7 @@ const FeaturedProducts = () => {
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FeaturedProducts
+export default FeaturedProducts;

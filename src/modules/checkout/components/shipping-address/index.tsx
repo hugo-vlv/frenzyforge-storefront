@@ -1,13 +1,13 @@
-import { CheckoutFormValues } from "@lib/context/checkout-context"
-import { emailRegex } from "@lib/util/regex"
-import ConnectForm from "@modules/common/components/connect-form"
-import Input from "@modules/common/components/input"
-import { useMeCustomer } from "medusa-react"
-import AddressSelect from "../address-select"
-import CountrySelect from "../country-select"
+import { CheckoutFormValues } from "@lib/context/checkout-context";
+import { emailRegex } from "@lib/util/regex";
+import ConnectForm from "@modules/common/components/connect-form";
+import Input from "@modules/common/components/input";
+import { useMeCustomer } from "medusa-react";
+import AddressSelect from "../address-select";
+import CountrySelect from "../country-select";
 
 const ShippingAddress = () => {
-  const { customer } = useMeCustomer()
+  const { customer } = useMeCustomer();
   return (
     <div>
       {customer && (customer.shipping_addresses?.length || 0) > 0 && (
@@ -120,7 +120,7 @@ const ShippingAddress = () => {
         )}
       </ConnectForm>
     </div>
-  )
-}
+  );
+};
 
-export default ShippingAddress
+export default ShippingAddress;

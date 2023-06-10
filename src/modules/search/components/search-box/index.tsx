@@ -1,8 +1,8 @@
-import X from "@modules/common/icons/x"
-import { FormEvent } from "react"
+import X from "@modules/common/icons/x";
+import { FormEvent } from "react";
 import SearchBoxWrapper, {
   ControlledSearchBoxProps,
-} from "../search-box-wrapper"
+} from "../search-box-wrapper";
 
 const ControlledSearchBox = ({
   inputRef,
@@ -15,28 +15,28 @@ const ControlledSearchBox = ({
   ...props
 }: ControlledSearchBoxProps) => {
   const handleSubmit = (event: FormEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
+    event.preventDefault();
+    event.stopPropagation();
 
     if (onSubmit) {
-      onSubmit(event)
+      onSubmit(event);
     }
 
     if (inputRef.current) {
-      inputRef.current.blur()
+      inputRef.current.blur();
     }
-  }
+  };
 
   const handleReset = (event: FormEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
+    event.preventDefault();
+    event.stopPropagation();
 
-    onReset(event)
+    onReset(event);
 
     if (inputRef.current) {
-      inputRef.current.focus()
+      inputRef.current.focus();
     }
-  }
+  };
 
   return (
     <div {...props} className="w-full">
@@ -66,8 +66,8 @@ const ControlledSearchBox = ({
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
 const SearchBox = () => {
   return (
@@ -77,10 +77,10 @@ const SearchBox = () => {
           <>
             <ControlledSearchBox {...props} />
           </>
-        )
+        );
       }}
     </SearchBoxWrapper>
-  )
-}
+  );
+};
 
-export default SearchBox
+export default SearchBox;

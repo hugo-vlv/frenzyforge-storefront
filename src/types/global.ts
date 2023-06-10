@@ -1,7 +1,7 @@
-import { Product } from "@medusajs/medusa"
-import { NextPage } from "next"
-import { AppProps } from "next/app"
-import { ReactElement, ReactNode } from "react"
+import { Product } from "@medusajs/medusa";
+import { NextPage } from "next";
+import { AppProps } from "next/app";
+import { ReactElement, ReactNode } from "react";
 
 export type CollectionData = {
   id: string

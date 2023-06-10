@@ -1,6 +1,6 @@
-import { Disclosure } from "@headlessui/react"
-import { useCheckout } from "@lib/context/checkout-context"
-import clsx from "clsx"
+import { Disclosure } from "@headlessui/react";
+import { useCheckout } from "@lib/context/checkout-context";
+import clsx from "clsx";
 
 type StepContainerProps = {
   index: number
@@ -19,7 +19,7 @@ const StepContainer = ({
 }: StepContainerProps) => {
   const {
     editAddresses: { state },
-  } = useCheckout()
+  } = useCheckout();
   return (
     <div>
       <div
@@ -62,7 +62,7 @@ const StepContainer = ({
         </Disclosure>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default StepContainer
+export default StepContainer;

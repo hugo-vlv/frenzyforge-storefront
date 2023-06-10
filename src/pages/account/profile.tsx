@@ -1,9 +1,11 @@
-import AccountLayout from "@modules/account/templates/account-layout"
-import ProfileTemplate from "@modules/account/templates/profile-template"
-import Head from "@modules/common/components/head"
-import Layout from "@modules/layout/templates"
-import { ReactElement } from "react"
-import { NextPageWithLayout } from "types/global"
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import AccountLayout from "@modules/account/templates/account-layout";
+import ProfileTemplate from "@modules/account/templates/profile-template";
+import Head from "@modules/common/components/head";
+import Layout from "@modules/layout/templates";
+import { ReactElement } from "react";
+import { NextPageWithLayout } from "types/global";
 
 const Profile: NextPageWithLayout = () => {
   return (
@@ -11,15 +13,26 @@ const Profile: NextPageWithLayout = () => {
       <Head title="Profile" description="View and edit your ACME profile." />
       <ProfileTemplate />
     </>
-  )
-}
+  );
+};
 
 Profile.getLayout = (page: ReactElement) => {
   return (
     <Layout>
       <AccountLayout>{page}</AccountLayout>
     </Layout>
-  )
-}
+  );
+};
 
-export default Profile
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { locale } = context;
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || '', [
+        'common',
+      ])),
+    },
+  };
+};
+
+export default Profile;

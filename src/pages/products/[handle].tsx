@@ -1,17 +1,17 @@
-// @ts-nocheck
-import { medusaClient } from "@lib/config"
-import { IS_BROWSER } from "@lib/constants"
-import { getProductHandles } from "@lib/util/get-product-handles"
-import Head from "@modules/common/components/head"
-import Layout from "@modules/layout/templates"
-import ProductTemplate from "@modules/products/templates"
-import SkeletonProductPage from "@modules/skeletons/templates/skeleton-product-page"
-import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query"
-import { GetStaticPaths, GetStaticProps } from "next"
-import { useRouter } from "next/router"
-import { ParsedUrlQuery } from "querystring"
-import { ReactElement } from "react"
-import { NextPageWithLayout, PrefetchedPageProps } from "types/global"
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { medusaClient } from "@lib/config";
+import { IS_BROWSER } from "@lib/constants";
+import { getProductHandles } from "@lib/util/get-product-handles";
+import Head from "@modules/common/components/head";
+import Layout from "@modules/layout/templates";
+import ProductTemplate from "@modules/products/templates";
+import SkeletonProductPage from "@modules/skeletons/templates/skeleton-product-page";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
+import { ParsedUrlQuery } from "querystring";
+import { ReactElement } from "react";
+import { NextPageWithLayout, PrefetchedPageProps } from "types/global";
 
 interface Params extends ParsedUrlQuery {
   handle: string
@@ -20,12 +20,12 @@ interface Params extends ParsedUrlQuery {
 const fetchProduct = async (handle: string) => {
   return await medusaClient.products
     .list({ handle })
-    .then(({ products }) => products[0])
-}
+    .then(({ products }) => products[0]);
+};
 
 const ProductPage: NextPageWithLayout<PrefetchedPageProps> = ({ notFound }) => {
-  const { query, isFallback, replace } = useRouter()
-  const handle = typeof query.handle === "string" ? query.handle : ""
+  const { query, isFallback, replace } = useRouter();
+  const handle = typeof query.handle === "string" ? query.handle : "";
 
   const { data, isError, isLoading, isSuccess } = useQuery(
     [`get_product`, handle],
@@ -34,76 +34,84 @@ const ProductPage: NextPageWithLayout<PrefetchedPageProps> = ({ notFound }) => {
       enabled: handle.length > 0,
       keepPreviousData: true,
     }
-  )
+  );
 
   if (notFound) {
     if (IS_BROWSER) {
-      replace("/404")
+      replace("/404");
     }
 
-    return <SkeletonProductPage />
+    return <SkeletonProductPage />;
   }
 
   if (isFallback || isLoading || !data) {
-    return <SkeletonProductPage />
+    return <SkeletonProductPage />;
   }
 
   if (isError) {
-    replace("/404")
+    replace("/404");
   }
 
   if (isSuccess) {
     return (
       <>
         <Head
-          description={data.description}
+          description={data.description || undefined}
           title={data.title}
-          image={data.thumbnail}
+          image={data.thumbnail || undefined}
         />
+        {/* @ts-ignore */}
         <ProductTemplate product={data} />
       </>
-    )
+    );
   }
 
-  return <></>
-}
+  return <></>;
+};
 
 ProductPage.getLayout = (page: ReactElement) => {
-  return <Layout>{page}</Layout>
-}
+  return <Layout>{page}</Layout>;
+};
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const handles = await getProductHandles()
+  const handles = await getProductHandles();
   return {
     paths: handles.map((handle) => ({ params: { handle } })),
     fallback: true,
-  }
-}
+  };
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const handle = context.params?.handle as string
-  const queryClient = new QueryClient()
+  const handle = context.params?.handle as string;
+  const queryClient = new QueryClient();
+  const { locale } = context;
 
   await queryClient.prefetchQuery([`get_product`, handle], () =>
     fetchProduct(handle)
-  )
+  );
 
-  const queryData = await queryClient.getQueryData([`get_product`, handle])
+  const queryData = await queryClient.getQueryData([`get_product`, handle]);
 
   if (!queryData) {
     return {
       props: {
+        ...(await serverSideTranslations(locale || '', [
+          'common',
+        ])),
         notFound: true,
       },
-    }
+    };
   }
 
   return {
     props: {
+      ...(await serverSideTranslations(locale || '', [
+        'common',
+      ])),
       dehydratedState: dehydrate(queryClient),
       notFound: false,
     },
-  }
-}
+  };
+};
 
-export default ProductPage
+export default ProductPage;

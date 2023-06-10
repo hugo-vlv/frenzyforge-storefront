@@ -1,6 +1,6 @@
-import { StoreGetProductsParams } from "@medusajs/medusa"
-import { useCollections } from "medusa-react"
-import { ChangeEvent } from "react"
+import { StoreGetProductsParams } from "@medusajs/medusa";
+import { useCollections } from "medusa-react";
+import { ChangeEvent } from "react";
 
 type RefinementListProps = {
   refinementList: StoreGetProductsParams
@@ -11,38 +11,38 @@ const RefinementList = ({
   refinementList,
   setRefinementList,
 }: RefinementListProps) => {
-  const { collections, isLoading } = useCollections()
+  const { collections, isLoading } = useCollections();
 
   const handleCollectionChange = (
     e: ChangeEvent<HTMLInputElement>,
     id: string
   ) => {
-    const { checked } = e.target
+    const { checked } = e.target;
 
-    const collectionIds = refinementList.collection_id || []
+    const collectionIds = refinementList.collection_id || [];
 
-    const exists = collectionIds.includes(id)
+    const exists = collectionIds.includes(id);
 
     if (checked && !exists) {
       setRefinementList({
         ...refinementList,
         collection_id: [...collectionIds, id],
-      })
+      });
 
-      return
+      return;
     }
 
     if (!checked && exists) {
       setRefinementList({
         ...refinementList,
         collection_id: collectionIds.filter((c) => c !== id),
-      })
+      });
 
-      return
+      return;
     }
 
-    return
-  }
+    return;
+  };
 
   return (
     <div>
@@ -69,7 +69,7 @@ const RefinementList = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RefinementList
+export default RefinementList;

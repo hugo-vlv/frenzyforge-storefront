@@ -1,13 +1,15 @@
-import { StoreGetProductsParams } from "@medusajs/medusa"
-import Head from "@modules/common/components/head"
-import Layout from "@modules/layout/templates"
-import InfiniteProducts from "@modules/products/components/infinite-products"
-import RefinementList from "@modules/store/components/refinement-list"
-import { useState } from "react"
-import { NextPageWithLayout } from "types/global"
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { StoreGetProductsParams } from "@medusajs/medusa";
+import Head from "@modules/common/components/head";
+import Layout from "@modules/layout/templates";
+import InfiniteProducts from "@modules/products/components/infinite-products";
+import RefinementList from "@modules/store/components/refinement-list";
+import { useState } from "react";
+import { NextPageWithLayout } from "types/global";
 
 const Store: NextPageWithLayout = () => {
-  const [params, setParams] = useState<StoreGetProductsParams>({})
+  const [params, setParams] = useState<StoreGetProductsParams>({});
 
   return (
     <>
@@ -17,9 +19,20 @@ const Store: NextPageWithLayout = () => {
         <InfiniteProducts params={params} />
       </div>
     </>
-  )
-}
+  );
+};
 
-Store.getLayout = (page) => <Layout>{page}</Layout>
+Store.getLayout = (page) => <Layout>{page}</Layout>;
 
-export default Store
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { locale } = context;
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || '', [
+        'common',
+      ])),
+    },
+  };
+};
+
+export default Store;

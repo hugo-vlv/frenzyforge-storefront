@@ -1,4 +1,4 @@
-import { Order } from "@medusajs/medusa"
+import { Order } from "@medusajs/medusa";
 
 type OrderDetailsProps = {
   order: Order
@@ -6,13 +6,13 @@ type OrderDetailsProps = {
 }
 
 const OrderDetails = ({ order, showStatus }: OrderDetailsProps) => {
-  const items = order.items.reduce((acc, i) => acc + i.quantity, 0)
+  const items = order.items.reduce((acc, i) => acc + i.quantity, 0);
 
   const formatStatus = (str: string) => {
-    const formatted = str.split("_").join(" ")
+    const formatted = str.split("_").join(" ");
 
-    return formatted.slice(0, 1).toUpperCase() + formatted.slice(1)
-  }
+    return formatted.slice(0, 1).toUpperCase() + formatted.slice(1);
+  };
 
   return (
     <div className="p-10 border-b border.gray-200">
@@ -32,7 +32,7 @@ const OrderDetails = ({ order, showStatus }: OrderDetailsProps) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrderDetails
+export default OrderDetails;

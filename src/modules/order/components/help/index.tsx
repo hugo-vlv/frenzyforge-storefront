@@ -1,5 +1,5 @@
-import Link from "next/link"
-import React from "react"
+import Link from "next/link";
+import React from "react";
 
 const Help = () => {
   return (
@@ -21,6 +21,6 @@ const Help = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Help
+export default Help;

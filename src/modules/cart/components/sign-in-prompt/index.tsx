@@ -1,5 +1,5 @@
-import Button from "@modules/common/components/button"
-import Link from "next/link"
+import Button from "@modules/common/components/button";
+import Link from "next/link";
 
 const SignInPrompt = () => {
   return (
@@ -19,6 +19,6 @@ const SignInPrompt = () => {
       </div>
     </div>
   );
-}
+};
 
-export default SignInPrompt
+export default SignInPrompt;

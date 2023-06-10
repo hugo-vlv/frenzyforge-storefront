@@ -1,5 +1,5 @@
-import FooterBlog from "@modules/layout/components/footer-blog"
-import FooterNav from "@modules/layout/components/footer-nav"
+import FooterBlog from "@modules/layout/components/footer-blog";
+import FooterNav from "@modules/layout/components/footer-nav";
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
       <FooterBlog />
       <FooterNav />
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

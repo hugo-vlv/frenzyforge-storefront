@@ -1,14 +1,14 @@
-import { RadioGroup } from "@headlessui/react"
-import { ErrorMessage } from "@hookform/error-message"
-import { useCheckout } from "@lib/context/checkout-context"
-import { Cart } from "@medusajs/medusa"
-import Radio from "@modules/common/components/radio"
-import Spinner from "@modules/common/icons/spinner"
-import clsx from "clsx"
-import { formatAmount, useCart, useCartShippingOptions } from "medusa-react"
-import React, { useEffect, useMemo } from "react"
-import { Controller, useForm } from "react-hook-form"
-import StepContainer from "../step-container"
+import { RadioGroup } from "@headlessui/react";
+import { ErrorMessage } from "@hookform/error-message";
+import { useCheckout } from "@lib/context/checkout-context";
+import { Cart } from "@medusajs/medusa";
+import Radio from "@modules/common/components/radio";
+import Spinner from "@modules/common/icons/spinner";
+import clsx from "clsx";
+import { formatAmount, useCart, useCartShippingOptions } from "medusa-react";
+import React, { useEffect, useMemo } from "react";
+import { Controller, useForm } from "react-hook-form";
+import StepContainer from "../step-container";
 
 type ShippingOption = {
   value: string
@@ -25,7 +25,7 @@ type ShippingFormProps = {
 }
 
 const Shipping: React.FC<ShippingProps> = ({ cart }) => {
-  const { addShippingMethod, setCart } = useCart()
+  const { addShippingMethod, setCart } = useCart();
   const {
     control,
     setError,
@@ -34,21 +34,21 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
     defaultValues: {
       soId: cart.shipping_methods?.[0]?.shipping_option_id,
     },
-  })
+  });
 
   // Fetch shipping options
   const { shipping_options, refetch } = useCartShippingOptions(cart.id, {
     enabled: !!cart.id,
-  })
+  });
 
   // Any time the cart changes we need to ensure that we are displaying valid shipping options
   useEffect(() => {
     const refetchShipping = async () => {
-      await refetch()
-    }
+      await refetch();
+    };
 
-    refetchShipping()
-  }, [cart, refetch])
+    refetchShipping();
+  }, [cart, refetch]);
 
   const submitShippingOption = (soId: string) => {
     addShippingMethod.mutate(
@@ -66,13 +66,13 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
             { shouldFocus: true }
           ),
       }
-    )
-  }
+    );
+  };
 
   const handleChange = (value: string, fn: (value: string) => void) => {
-    submitShippingOption(value)
-    fn(value)
-  }
+    submitShippingOption(value);
+    fn(value);
+  };
 
   // Memoized shipping method options
   const shippingMethods: ShippingOption[] = useMemo(() => {
@@ -84,15 +84,15 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
           amount: option.amount || 0,
           region: cart.region,
         }),
-      }))
+      }));
     }
 
-    return []
-  }, [shipping_options, cart])
+    return [];
+  }, [shipping_options, cart]);
 
   const {
     sameAsBilling: { state: sameBilling },
-  } = useCheckout()
+  } = useCheckout();
 
   return (
     <StepContainer
@@ -137,7 +137,7 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                           {option.price}
                         </span>
                       </RadioGroup.Option>
-                    )
+                    );
                   })
                 ) : (
                   <div className="flex flex-col items-center justify-center px-4 py-8 text-gray-900">
@@ -153,15 +153,15 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                     <div className="pt-2 text-rose-500 text-small-regular">
                       <span>{message}</span>
                     </div>
-                  )
+                  );
                 }}
               />
             </div>
-          )
+          );
         }}
       />
     </StepContainer>
-  )
-}
+  );
+};
 
-export default Shipping
+export default Shipping;

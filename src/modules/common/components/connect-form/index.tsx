@@ -1,6 +1,6 @@
-import type { ReactElement } from "react"
-import type { FieldValues, UseFormReturn } from "react-hook-form"
-import { useFormContext } from "react-hook-form"
+import type { ReactElement } from "react";
+import type { FieldValues, UseFormReturn } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 interface ConnectFormProps<TFieldValues extends FieldValues> {
   children(children: UseFormReturn<TFieldValues>): ReactElement
@@ -12,9 +12,9 @@ interface ConnectFormProps<TFieldValues extends FieldValues> {
 const ConnectForm = <TFieldValues extends FieldValues>({
   children,
 }: ConnectFormProps<TFieldValues>) => {
-  const methods = useFormContext<TFieldValues>()
+  const methods = useFormContext<TFieldValues>();
 
-  return children({ ...methods })
-}
+  return children({ ...methods });
+};
 
-export default ConnectForm
+export default ConnectForm;

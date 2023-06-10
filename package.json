@@ -13,7 +13,8 @@
     "start": "next start -p 8000",
     "lint": "next lint",
     "cypress": "cypress open",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "fix": "eslint --fix"
   },
   "resolutions": {
     "webpack": "^5",
@@ -34,6 +35,7 @@
     "lodash": "^4.17.21",
     "medusa-react": "^4.0.4",
     "next": "^13.4.4",
+    "next-i18next": "^13.3.0",
     "react": "^18.2.0",
     "react-country-flag": "^3.0.2",
     "react-dom": "^18.2.0",

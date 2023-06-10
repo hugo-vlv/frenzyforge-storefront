@@ -1,10 +1,10 @@
-import { medusaClient } from "@lib/config"
-import { getPercentageDiff } from "@lib/util/get-precentage-diff"
-import { Product, ProductCollection, Region } from "@medusajs/medusa"
-import { useQuery } from "@tanstack/react-query"
-import { formatAmount, useCart } from "medusa-react"
-import { ProductPreviewType } from "types/global"
-import { CalculatedVariant } from "types/medusa"
+import { medusaClient } from "@lib/config";
+import { getPercentageDiff } from "@lib/util/get-precentage-diff";
+import { Product, ProductCollection, Region } from "@medusajs/medusa";
+import { useQuery } from "@tanstack/react-query";
+import { formatAmount, useCart } from "medusa-react";
+import { ProductPreviewType } from "types/global";
+import { CalculatedVariant } from "types/medusa";
 
 type LayoutCollection = {
   id: string
@@ -12,28 +12,28 @@ type LayoutCollection = {
 }
 
 const fetchCollectionData = async (): Promise<LayoutCollection[]> => {
-  let collections: ProductCollection[] = []
-  let offset = 0
-  let count = 1
+  let collections: ProductCollection[] = [];
+  let offset = 0;
+  let count = 1;
 
   do {
     await medusaClient.collections
       .list({ offset })
       .then(({ collections: newCollections, count: newCount }) => {
-        collections = [...collections, ...newCollections]
-        count = newCount
-        offset = collections.length
+        collections = [...collections, ...newCollections];
+        count = newCount;
+        offset = collections.length;
       })
       .catch((_) => {
-        count = 0
-      })
-  } while (collections.length < count)
+        count = 0;
+      });
+  } while (collections.length < count);
 
   return collections.map((c) => ({
     id: c.id,
     title: c.title,
-  }))
-}
+  }));
+};
 
 export const useNavigationCollections = () => {
   const queryResults = useQuery({
@@ -41,10 +41,10 @@ export const useNavigationCollections = () => {
     queryKey: ["navigation_collections"],
     staleTime: Infinity,
     refetchOnWindowFocus: false,
-  })
+  });
 
-  return queryResults
-}
+  return queryResults;
+};
 
 const fetchFeaturedProducts = async (
   cartId: string,
@@ -57,21 +57,21 @@ const fetchFeaturedProducts = async (
       cart_id: cartId,
     })
     .then(({ products }) => products)
-    .catch((_) => [] as Product[])
+    .catch((_) => [] as Product[]);
 
   return products
     // @ts-expect-error
     .filter((p) => !!p.variants)
     // @ts-expect-error
     .map((p) => {
-      const variants = p.variants as CalculatedVariant[]
+      const variants = p.variants as CalculatedVariant[];
 
       const cheapestVariant = variants.reduce((acc, curr) => {
         if (acc.calculated_price > curr.calculated_price) {
-          return curr
+          return curr;
         }
-        return acc
-      }, variants[0])
+        return acc;
+      }, variants[0]);
 
       return {
         id: p.id,
@@ -102,12 +102,12 @@ const fetchFeaturedProducts = async (
               difference: "N/A",
               price_type: "default",
             },
-      }
-    })
-}
+      };
+    });
+};
 
 export const useFeaturedProductsQuery = () => {
-  const { cart } = useCart()
+  const { cart } = useCart();
 
   const queryResults = useQuery(
     ["layout_featured_products", cart?.id, cart?.region],
@@ -117,7 +117,7 @@ export const useFeaturedProductsQuery = () => {
       staleTime: Infinity,
       refetchOnWindowFocus: false,
     }
-  )
+  );
 
-  return queryResults
-}
+  return queryResults;
+};

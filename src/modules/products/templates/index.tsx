@@ -1,21 +1,21 @@
-import { ProductProvider } from "@lib/context/product-context"
-import { useIntersection } from "@lib/hooks/use-in-view"
-import { Product } from "@medusajs/medusa"
-import ProductTabs from "@modules/products/components/product-tabs"
-import RelatedProducts from "@modules/products/components/related-products"
-import ProductInfo from "@modules/products/templates/product-info"
-import React, { useRef } from "react"
-import ImageGallery from "../components/image-gallary"
-import MobileActions from "../components/mobile-actions"
+import { ProductProvider } from "@lib/context/product-context";
+import { useIntersection } from "@lib/hooks/use-in-view";
+import { Product } from "@medusajs/medusa";
+import ProductTabs from "@modules/products/components/product-tabs";
+import RelatedProducts from "@modules/products/components/related-products";
+import ProductInfo from "@modules/products/templates/product-info";
+import React, { useRef } from "react";
+import ImageGallery from "../components/image-gallary";
+import MobileActions from "../components/mobile-actions";
 
 type ProductTemplateProps = {
   product: Product
 }
 
 const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
-  const info = useRef<HTMLDivElement>(null)
+  const info = useRef<HTMLDivElement>(null);
 
-  const inView = useIntersection(info, "0px")
+  const inView = useIntersection(info, "0px");
 
   return (
     <ProductProvider product={product}>
@@ -36,7 +36,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
       </div>
       <MobileActions product={product} show={!inView} />
     </ProductProvider>
-  )
-}
+  );
+};
 
-export default ProductTemplate
+export default ProductTemplate;

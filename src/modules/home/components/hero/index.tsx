@@ -1,9 +1,9 @@
-import clsx from "clsx"
+import clsx from "clsx";
 
-import UnderlineLink from "@modules/common/components/underline-link"
-import usePageOffset from '@lib/hooks/use-page-offset'
+import UnderlineLink from "@modules/common/components/underline-link";
+import usePageOffset from '@lib/hooks/use-page-offset';
 
-import styles from './hero.module.scss'
+import styles from './hero.module.scss';
 
 const Hero = () => {
   return (
@@ -23,7 +23,7 @@ const Hero = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Hero;

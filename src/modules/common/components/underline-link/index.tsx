@@ -1,5 +1,5 @@
-import ArrowRight from "@modules/common/icons/arrow-right"
-import Link from "next/link"
+import ArrowRight from "@modules/common/icons/arrow-right";
+import Link from "next/link";
 
 type UnderlineLinkProps = {
   href: string
@@ -23,6 +23,6 @@ const UnderlineLink = ({ href, children }: UnderlineLinkProps) => {
       </Link>
     </div>
   );
-}
+};
 
-export default UnderlineLink
+export default UnderlineLink;

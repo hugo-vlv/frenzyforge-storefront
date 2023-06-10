@@ -1,17 +1,17 @@
-import { medusaClient } from "@lib/config"
-import { useAccount } from "@lib/context/account-context"
-import useToggleState from "@lib/hooks/use-toggle-state"
-import { Address } from "@medusajs/medusa"
-import CountrySelect from "@modules/checkout/components/country-select"
-import Button from "@modules/common/components/button"
-import Input from "@modules/common/components/input"
-import Modal from "@modules/common/components/modal"
-import Edit from "@modules/common/icons/edit"
-import Spinner from "@modules/common/icons/spinner"
-import Trash from "@modules/common/icons/trash"
-import clsx from "clsx"
-import React, { useState } from "react"
-import { useForm } from "react-hook-form"
+import { medusaClient } from "@lib/config";
+import { useAccount } from "@lib/context/account-context";
+import useToggleState from "@lib/hooks/use-toggle-state";
+import { Address } from "@medusajs/medusa";
+import CountrySelect from "@modules/checkout/components/country-select";
+import Button from "@modules/common/components/button";
+import Input from "@modules/common/components/input";
+import Modal from "@modules/common/components/modal";
+import Edit from "@modules/common/icons/edit";
+import Spinner from "@modules/common/icons/spinner";
+import Trash from "@modules/common/icons/trash";
+import clsx from "clsx";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 type FormValues = {
   first_name: string
@@ -35,11 +35,11 @@ const EditAddress: React.FC<EditAddressProps> = ({
   address,
   isActive = false,
 }) => {
-  const { state, open, close } = useToggleState(false)
-  const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | undefined>(undefined)
+  const { state, open, close } = useToggleState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | undefined>(undefined);
 
-  const { refetchCustomer } = useAccount()
+  const { refetchCustomer } = useAccount();
   const {
     register,
     handleSubmit,
@@ -57,11 +57,11 @@ const EditAddress: React.FC<EditAddressProps> = ({
       company: address.company || undefined,
       province: address.province || undefined,
     },
-  })
+  });
 
   const submit = handleSubmit(async (data: FormValues) => {
-    setSubmitting(true)
-    setError(undefined)
+    setSubmitting(true);
+    setError(undefined);
 
     const payload = {
       first_name: data.first_name,
@@ -75,26 +75,26 @@ const EditAddress: React.FC<EditAddressProps> = ({
       postal_code: data.postal_code,
       phone: data.phone || "None",
       metadata: {},
-    }
+    };
 
     medusaClient.customers.addresses
       .updateAddress(address.id, payload)
       .then(() => {
-        setSubmitting(false)
-        refetchCustomer()
-        close()
+        setSubmitting(false);
+        refetchCustomer();
+        close();
       })
       .catch(() => {
-        setSubmitting(false)
-        setError("Failed to update address, please try again.")
-      })
-  })
+        setSubmitting(false);
+        setError("Failed to update address, please try again.");
+      });
+  });
 
   const removeAddress = () => {
     medusaClient.customers.addresses.deleteAddress(address.id).then(() => {
-      refetchCustomer()
-    })
-  }
+      refetchCustomer();
+    });
+  };
 
   return (
     <>
@@ -239,7 +239,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default EditAddress
+export default EditAddress;

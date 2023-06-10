@@ -1,11 +1,11 @@
-import { useAccount } from "@lib/context/account-context"
-import { Customer, StorePostCustomersCustomerReq } from "@medusajs/medusa"
-import Input from "@modules/common/components/input"
-import NativeSelect from "@modules/common/components/native-select"
-import { useRegions, useUpdateMe } from "medusa-react"
-import React, { useEffect, useMemo } from "react"
-import { useForm, useWatch } from "react-hook-form"
-import AccountInfo from "../account-info"
+import { useAccount } from "@lib/context/account-context";
+import { Customer, StorePostCustomersCustomerReq } from "@medusajs/medusa";
+import Input from "@modules/common/components/input";
+import NativeSelect from "@modules/common/components/native-select";
+import { useRegions, useUpdateMe } from "medusa-react";
+import React, { useEffect, useMemo } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import AccountInfo from "../account-info";
 
 type MyInformationProps = {
   customer: Omit<Customer, "password_hash">
@@ -27,7 +27,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
     defaultValues: {
       ...mapBillingAddressToFormData({ customer }),
     },
-  })
+  });
 
   const {
     mutate: update,
@@ -35,9 +35,9 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
     isSuccess,
     isError,
     reset: clearState,
-  } = useUpdateMe()
+  } = useUpdateMe();
 
-  const { regions } = useRegions()
+  const { regions } = useRegions();
 
   const regionOptions = useMemo(() => {
     return (
@@ -46,19 +46,19 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
           return region.countries.map((country) => ({
             value: country.iso_2,
             label: country.display_name,
-          }))
+          }));
         })
         .flat() || []
-    )
-  }, [regions])
+    );
+  }, [regions]);
 
   useEffect(() => {
     reset({
       ...mapBillingAddressToFormData({ customer }),
-    })
-  }, [customer, reset])
+    });
+  }, [customer, reset]);
 
-  const { refetchCustomer } = useAccount()
+  const { refetchCustomer } = useAccount();
 
   const [
     firstName,
@@ -83,7 +83,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
       "billing_address.postal_code",
       "billing_address.country_code",
     ],
-  })
+  });
 
   const updateBillingAddress = (data: UpdateCustomerNameFormData) => {
     return update(
@@ -93,21 +93,21 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
       },
       {
         onSuccess: () => {
-          refetchCustomer()
+          refetchCustomer();
         },
       }
-    )
-  }
+    );
+  };
 
   const currentInfo = useMemo(() => {
     if (!customer.billing_address) {
-      return "No billing address"
+      return "No billing address";
     }
 
     const country =
       regionOptions?.find(
         (country) => country.value === customer.billing_address.country_code
-      )?.label || customer.billing_address.country_code?.toUpperCase()
+      )?.label || customer.billing_address.country_code?.toUpperCase();
 
     return (
       <div className="flex flex-col font-semibold">
@@ -128,8 +128,8 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
         </span>
         <span>{country}</span>
       </div>
-    )
-  }, [customer, regionOptions])
+    );
+  }, [customer, regionOptions]);
 
   return (
     <form
@@ -210,14 +210,14 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({ customer }) => {
                 <option key={i} value={option.value}>
                   {option.label}
                 </option>
-              )
+              );
             })}
           </NativeSelect>
         </div>
       </AccountInfo>
     </form>
-  )
-}
+  );
+};
 
 const mapBillingAddressToFormData = ({ customer }: MyInformationProps) => {
   return {
@@ -232,7 +232,7 @@ const mapBillingAddressToFormData = ({ customer }: MyInformationProps) => {
       postal_code: customer.billing_address?.postal_code || undefined,
       country_code: customer.billing_address?.country_code || undefined,
     },
-  }
-}
+  };
+};
 
-export default ProfileBillingAddress
+export default ProfileBillingAddress;

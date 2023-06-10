@@ -1,14 +1,14 @@
-import { Dialog, Transition } from "@headlessui/react"
-import { useProductActions } from "@lib/context/product-context"
-import useProductPrice from "@lib/hooks/use-product-price"
-import useToggleState from "@lib/hooks/use-toggle-state"
-import Button from "@modules/common/components/button"
-import ChevronDown from "@modules/common/icons/chevron-down"
-import X from "@modules/common/icons/x"
-import clsx from "clsx"
-import React, { Fragment, useMemo } from "react"
-import { Product } from "types/medusa"
-import OptionSelect from "../option-select"
+import { Dialog, Transition } from "@headlessui/react";
+import { useProductActions } from "@lib/context/product-context";
+import useProductPrice from "@lib/hooks/use-product-price";
+import useToggleState from "@lib/hooks/use-toggle-state";
+import Button from "@modules/common/components/button";
+import ChevronDown from "@modules/common/icons/chevron-down";
+import X from "@modules/common/icons/x";
+import clsx from "clsx";
+import React, { Fragment, useMemo } from "react";
+import { Product } from "types/medusa";
+import OptionSelect from "../option-select";
 
 type MobileActionsProps = {
   product: Product
@@ -16,16 +16,16 @@ type MobileActionsProps = {
 }
 
 const MobileActions: React.FC<MobileActionsProps> = ({ product, show }) => {
-  const { variant, addToCart, options, inStock, updateOptions } = useProductActions()
-  const { state, open, close } = useToggleState()
+  const { variant, addToCart, options, inStock, updateOptions } = useProductActions();
+  const { state, open, close } = useToggleState();
 
-  const price = useProductPrice({ id: product.id, variantId: variant?.id })
+  const price = useProductPrice({ id: product.id, variantId: variant?.id });
 
   const selectedPrice = useMemo(() => {
-    const { variantPrice, cheapestPrice } = price
+    const { variantPrice, cheapestPrice } = price;
 
-    return variantPrice || cheapestPrice || null
-  }, [price])
+    return variantPrice || cheapestPrice || null;
+  }, [price]);
 
   return (
     <>
@@ -132,7 +132,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({ product, show }) => {
                                 title={option.title}
                               />
                             </div>
-                          )
+                          );
                         })}
                       </div>
                     )}
@@ -144,7 +144,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({ product, show }) => {
         </Dialog>
       </Transition>
     </>
-  )
-}
+  );
+};
 
-export default MobileActions
+export default MobileActions;

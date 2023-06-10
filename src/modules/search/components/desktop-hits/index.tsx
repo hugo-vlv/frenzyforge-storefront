@@ -1,7 +1,7 @@
-import clsx from "clsx"
-import React from "react"
-import { useHits, UseHitsProps } from "react-instantsearch-hooks-web"
-import { ProductHit } from "../hit"
+import clsx from "clsx";
+import React from "react";
+import { useHits, UseHitsProps } from "react-instantsearch-hooks-web";
+import { ProductHit } from "../hit";
 
 type HitsProps<THit> = React.ComponentProps<"div"> &
   UseHitsProps & {
@@ -13,7 +13,7 @@ const DesktopHits = ({
   className,
   ...props
 }: HitsProps<ProductHit>) => {
-  const { hits } = useHits(props)
+  const { hits } = useHits(props);
 
   return (
     <div
@@ -34,7 +34,7 @@ const DesktopHits = ({
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DesktopHits
+export default DesktopHits;

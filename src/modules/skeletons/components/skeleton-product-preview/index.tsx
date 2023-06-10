@@ -8,7 +8,7 @@ const SkeletonProductPreview = () => {
         <div className="w-2/5 h-6 bg-gray-100 mt-2"></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SkeletonProductPreview
+export default SkeletonProductPreview;

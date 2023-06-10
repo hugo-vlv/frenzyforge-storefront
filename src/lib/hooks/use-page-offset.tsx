@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 type OffestData = {
     scrollY: number,
@@ -24,6 +24,6 @@ const usePageOffset = (): OffestData => {
         scrollY,
         isScrollTop: scrollY <= 5
     };
-}
+};
 
 export default usePageOffset;

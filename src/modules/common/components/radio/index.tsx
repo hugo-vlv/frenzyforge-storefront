@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import clsx from "clsx";
 
 const Radio = ({ checked }: { checked: boolean }) => {
   return (
@@ -12,7 +12,7 @@ const Radio = ({ checked }: { checked: boolean }) => {
     >
       {checked && <div className="w-2 h-2 rounded-full bg-gray-900" />}
     </div>
-  )
-}
+  );
+};
 
-export default Radio
+export default Radio;

@@ -1,13 +1,13 @@
-import usePreviews from "@lib/hooks/use-previews"
-import getNumberOfSkeletons from "@lib/util/get-number-of-skeletons"
-import repeat from "@lib/util/repeat"
-import ProductPreview from "@modules/products/components/product-preview"
-import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview"
-import { fetchCollectionProducts } from "@pages/collections/[id]"
-import { useInfiniteQuery } from "@tanstack/react-query"
-import { useCart } from "medusa-react"
-import React, { useEffect } from "react"
-import { useInView } from "react-intersection-observer"
+import usePreviews from "@lib/hooks/use-previews";
+import getNumberOfSkeletons from "@lib/util/get-number-of-skeletons";
+import repeat from "@lib/util/repeat";
+import ProductPreview from "@modules/products/components/product-preview";
+import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview";
+import { fetchCollectionProducts } from "@pages/collections/[id]";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useCart } from "medusa-react";
+import React, { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 type CollectionTemplateProps = {
   collection: {
@@ -19,8 +19,8 @@ type CollectionTemplateProps = {
 const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
   collection,
 }) => {
-  const { cart } = useCart()
-  const { ref, inView } = useInView()
+  const { cart } = useCart();
+  const { ref, inView } = useInView();
 
   const {
     data: infiniteData,
@@ -40,26 +40,26 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
     {
       getNextPageParam: (lastPage) => lastPage.nextPage,
     }
-  )
+  );
 
   useEffect(() => {
     if (cart?.region_id) {
-      refetch()
+      refetch();
     }
-  }, [cart?.region_id, refetch])
+  }, [cart?.region_id, refetch]);
 
   const previews = usePreviews({
     // @ts-expect-error
     pages: infiniteData?.pages,
     region: cart?.region,
-  })
+  });
 
   useEffect(() => {
     if (inView && hasNextPage) {
-      fetchNextPage()
+      fetchNextPage();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView, hasNextPage])
+  }, [inView, hasNextPage]);
 
   return (
     <div className="content-container py-6">
@@ -94,7 +94,7 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
         <span ref={ref}></span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CollectionTemplate
+export default CollectionTemplate;

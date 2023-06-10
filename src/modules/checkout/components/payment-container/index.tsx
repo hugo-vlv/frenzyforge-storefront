@@ -1,9 +1,9 @@
-import { PaymentSession } from "@medusajs/medusa"
-import Radio from "@modules/common/components/radio"
-import clsx from "clsx"
-import React from "react"
-import PaymentStripe from "../payment-stripe"
-import PaymentTest from "../payment-test"
+import { PaymentSession } from "@medusajs/medusa";
+import Radio from "@modules/common/components/radio";
+import clsx from "clsx";
+import React from "react";
+import PaymentStripe from "../payment-stripe";
+import PaymentTest from "../payment-test";
 
 type PaymentContainerProps = {
   paymentSession: PaymentSession
@@ -29,7 +29,7 @@ const PaymentInfoMap: Record<string, { title: string; description: string }> = {
     title: "Test payment",
     description: "Test payment using medusa-payment-manual",
   },
-}
+};
 
 const PaymentContainer: React.FC<PaymentContainerProps> = ({
   paymentSession,
@@ -67,8 +67,8 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
         </div>
       </button>
     </div>
-  )
-}
+  );
+};
 
 const PaymentElement = ({
   paymentSession,
@@ -81,13 +81,13 @@ const PaymentElement = ({
         <div className="pt-8 pr-7">
           <PaymentStripe />
         </div>
-      )
+      );
     case "manual":
       // We only display the test payment form if we are in a development environment
-      return process.env.NODE_ENV === "development" ? <PaymentTest /> : null
+      return process.env.NODE_ENV === "development" ? <PaymentTest /> : null;
     default:
-      return null
+      return null;
   }
-}
+};
 
-export default PaymentContainer
+export default PaymentContainer;

@@ -1,27 +1,27 @@
-import { Popover, Transition } from "@headlessui/react"
+import { Popover, Transition } from "@headlessui/react";
 import {
   useFeaturedProductsQuery,
   useNavigationCollections,
-} from "@lib/hooks/use-layout-data"
-import repeat from "@lib/util/repeat"
-import ProductPreview from "@modules/products/components/product-preview"
-import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview"
-import Hamburger from "@modules/common/components/hamburger"
-import clsx from "clsx"
-import { chunk } from "lodash"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import React, { useState } from "react"
+} from "@lib/hooks/use-layout-data";
+import repeat from "@lib/util/repeat";
+import ProductPreview from "@modules/products/components/product-preview";
+import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview";
+import Hamburger from "@modules/common/components/hamburger";
+import clsx from "clsx";
+import { chunk } from "lodash";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 
-import styles from './index.module.css'
+import styles from './index.module.css';
 
 const DropdownMenu = () => {
-  const [open, setOpen] = useState(false)
-  const { push } = useRouter()
+  const [open, setOpen] = useState(false);
+  const { push } = useRouter();
   const { data: collections, isLoading: loadingCollections } =
-    useNavigationCollections()
+    useNavigationCollections();
   const { data: products, isLoading: loadingProducts } =
-    useFeaturedProductsQuery()
+    useFeaturedProductsQuery();
 
   return (
     <div
@@ -40,7 +40,7 @@ const DropdownMenu = () => {
                 )}
                 onClick={() => push("/store")}
               >
-                <Hamburger barWidth={6} barHeight={0.5} />
+                <Hamburger setOpen={() => null} />
               </Popover.Button>
 
             </Link>
@@ -116,6 +116,6 @@ const DropdownMenu = () => {
       </div>
     </div>
   );
-}
+};
 
-export default DropdownMenu
+export default DropdownMenu;

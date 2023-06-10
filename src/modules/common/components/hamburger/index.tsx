@@ -1,7 +1,7 @@
-import clsx from "clsx"
-import React from "react"
+import React from "react";
+import clsx from "clsx";
 
-import styles from './index.module.scss'
+import styles from './index.module.scss';
 
 type HamburgerProps = {
   setOpen?: () => void
@@ -11,7 +11,7 @@ type HamburgerProps = {
 
 const Hamburger: React.FC<HamburgerProps> = ({ setOpen }) => {
   return (
-    <button
+    <div
       className={clsx("w-10 h-10 relative focus:outline-none")}
       onClick={setOpen}
     >
@@ -38,8 +38,8 @@ const Hamburger: React.FC<HamburgerProps> = ({ setOpen }) => {
           )}
         ></span>
       </div>
-    </button>
-  )
-}
+    </div>
+  );
+};
 
-export default Hamburger
+export default Hamburger;

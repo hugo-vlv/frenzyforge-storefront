@@ -1,6 +1,6 @@
-import { Disclosure } from "@headlessui/react"
-import clsx from "clsx"
-import React from "react"
+import { Disclosure } from "@headlessui/react";
+import clsx from "clsx";
+import React from "react";
 
 const InfoContainer: React.FC<{ label: string }> = ({ label, children }) => {
   return (
@@ -13,8 +13,8 @@ const InfoContainer: React.FC<{ label: string }> = ({ label, children }) => {
         <Collapsible label={label}>{children}</Collapsible>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const Collapsible: React.FC<{ label: string }> = ({ label, children }) => {
   return (
@@ -42,12 +42,12 @@ const Collapsible: React.FC<{ label: string }> = ({ label, children }) => {
                 </div>
               </Disclosure.Panel>
             </>
-          )
+          );
         }}
       </Disclosure>
     </div>
-  )
-}
+  );
+};
 
 const AnimatedButton = ({ open }: { open: boolean }) => {
   return (
@@ -60,5 +60,5 @@ const AnimatedButton = ({ open }: { open: boolean }) => {
         )}
       />
     </div>
-  )
-}
+  );
+};

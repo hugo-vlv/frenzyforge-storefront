@@ -1,36 +1,36 @@
-import { Listbox, Transition } from "@headlessui/react"
-import { useCheckout } from "@lib/context/checkout-context"
-import { Address } from "@medusajs/medusa"
-import Radio from "@modules/common/components/radio"
-import ChevronDown from "@modules/common/icons/chevron-down"
-import clsx from "clsx"
-import { isEqual, omit } from "lodash"
-import { Fragment, useMemo, useState } from "react"
-import { useWatch } from "react-hook-form"
+import { Listbox, Transition } from "@headlessui/react";
+import { useCheckout } from "@lib/context/checkout-context";
+import { Address } from "@medusajs/medusa";
+import Radio from "@modules/common/components/radio";
+import ChevronDown from "@modules/common/icons/chevron-down";
+import clsx from "clsx";
+import { isEqual, omit } from "lodash";
+import { Fragment, useMemo, useState } from "react";
+import { useWatch } from "react-hook-form";
 
 type AddressSelectProps = {
   addresses: Address[]
 }
 
 const AddressSelect = ({ addresses }: AddressSelectProps) => {
-  const [selected, setSelected] = useState<string | undefined>(undefined)
+  const [selected, setSelected] = useState<string | undefined>(undefined);
 
-  const { control, setSavedAddress } = useCheckout()
+  const { control, setSavedAddress } = useCheckout();
 
   const handleSelect = (id: string) => {
-    const savedAddress = addresses.find((a) => a.id === id)
+    const savedAddress = addresses.find((a) => a.id === id);
 
     if (savedAddress) {
-      setSavedAddress(savedAddress)
+      setSavedAddress(savedAddress);
     }
 
-    setSelected(id)
-  }
+    setSelected(id);
+  };
 
   const currentShippingAddress = useWatch({
     control,
     name: "shipping_address",
-  })
+  });
 
   const selectedAddress = useMemo(() => {
     for (const address of addresses) {
@@ -45,13 +45,13 @@ const AddressSelect = ({ addresses }: AddressSelectProps) => {
           "customer_id",
         ]),
         currentShippingAddress
-      )
+      );
 
       if (checkEquality) {
-        return address
+        return address;
       }
     }
-  }, [currentShippingAddress, addresses])
+  }, [currentShippingAddress, addresses]);
 
   return (
     <Listbox onChange={handleSelect} value={selected}>
@@ -114,13 +114,13 @@ const AddressSelect = ({ addresses }: AddressSelectProps) => {
                     </div>
                   </div>
                 </Listbox.Option>
-              )
+              );
             })}
           </Listbox.Options>
         </Transition>
       </div>
     </Listbox>
-  )
-}
+  );
+};
 
-export default AddressSelect
+export default AddressSelect;

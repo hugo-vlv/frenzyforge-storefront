@@ -1,12 +1,12 @@
-import { useAccount } from "@lib/context/account-context"
-import ChevronDown from "@modules/common/icons/chevron-down"
-import clsx from "clsx"
-import Link from "next/link"
-import { useRouter } from "next/router"
+import { useAccount } from "@lib/context/account-context";
+import ChevronDown from "@modules/common/icons/chevron-down";
+import clsx from "clsx";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const AccountNav = () => {
-  const { route } = useRouter()
-  const { handleLogout } = useAccount()
+  const { route } = useRouter();
+  const { handleLogout } = useAccount();
 
   return (
     <div>
@@ -61,7 +61,7 @@ const AccountNav = () => {
       </div>
     </div>
   );
-}
+};
 
 type AccountNavLinkProps = {
   href: string
@@ -70,7 +70,7 @@ type AccountNavLinkProps = {
 }
 
 const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
-  const active = route === href
+  const active = route === href;
   return (
     (<Link
       href={href}
@@ -82,6 +82,6 @@ const AccountNavLink = ({ href, route, children }: AccountNavLinkProps) => {
 
     </Link>)
   );
-}
+};
 
-export default AccountNav
+export default AccountNav;

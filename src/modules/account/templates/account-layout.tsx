@@ -1,22 +1,22 @@
-import { useAccount } from "@lib/context/account-context"
-import UnderlineLink from "@modules/common/components/underline-link"
-import Spinner from "@modules/common/icons/spinner"
-import React, { useEffect } from "react"
-import AccountNav from "../components/account-nav"
+import { useAccount } from "@lib/context/account-context";
+import UnderlineLink from "@modules/common/components/underline-link";
+import Spinner from "@modules/common/icons/spinner";
+import React, { useEffect } from "react";
+import AccountNav from "../components/account-nav";
 
 const AccountLayout: React.FC = ({ children }) => {
-  const { customer, retrievingCustomer, checkSession } = useAccount()
+  const { customer, retrievingCustomer, checkSession } = useAccount();
 
   useEffect(() => {
-    checkSession()
-  }, [checkSession])
+    checkSession();
+  }, [checkSession]);
 
   if (retrievingCustomer || !customer) {
     return (
       <div className="flex items-center justify-center w-full min-h-[640px] h-full text-gray-900">
         <Spinner size={36} />
       </div>
-    )
+    );
   }
 
   return (
@@ -44,7 +44,7 @@ const AccountLayout: React.FC = ({ children }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AccountLayout
+export default AccountLayout;

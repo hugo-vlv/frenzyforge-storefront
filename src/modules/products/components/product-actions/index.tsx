@@ -1,11 +1,11 @@
-import { useProductActions } from "@lib/context/product-context"
-import useProductPrice from "@lib/hooks/use-product-price"
-import Button from "@modules/common/components/button"
-import OptionSelect from "@modules/products/components/option-select"
-import clsx from "clsx"
-import Link from "next/link"
-import React, { useMemo } from "react"
-import { Product } from "types/medusa"
+import { useProductActions } from "@lib/context/product-context";
+import useProductPrice from "@lib/hooks/use-product-price";
+import Button from "@modules/common/components/button";
+import OptionSelect from "@modules/products/components/option-select";
+import clsx from "clsx";
+import Link from "next/link";
+import React, { useMemo } from "react";
+import { Product } from "types/medusa";
 
 type ProductActionsProps = {
   product: Product
@@ -13,15 +13,15 @@ type ProductActionsProps = {
 
 const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   const { updateOptions, addToCart, options, inStock, variant } =
-    useProductActions()
+    useProductActions();
 
-  const price = useProductPrice({ id: product.id, variantId: variant?.id })
+  const price = useProductPrice({ id: product.id, variantId: variant?.id });
 
   const selectedPrice = useMemo(() => {
-    const { variantPrice, cheapestPrice } = price
+    const { variantPrice, cheapestPrice } = price;
 
-    return variantPrice || cheapestPrice || null
-  }, [price])
+    return variantPrice || cheapestPrice || null;
+  }, [price]);
 
   return (
     <div className="flex flex-col gap-y-2">
@@ -50,7 +50,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
                   title={option.title}
                 />
               </div>
-            )
+            );
           })}
         </div>
       )}
@@ -89,6 +89,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       </Button>
     </div>
   );
-}
+};
 
-export default ProductActions
+export default ProductActions;
