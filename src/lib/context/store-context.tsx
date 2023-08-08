@@ -197,8 +197,6 @@ export const StoreProvider = ({ children }: StoreProps) => {
       const region = getRegion();
 
       if (cartId) {
-        console.log('retreving cart');
-        
         const cartRes = await medusaClient.carts
           .retrieve(cartId)
           .then(({ cart }) => {

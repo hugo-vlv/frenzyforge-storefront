@@ -5,6 +5,10 @@
             "header": "Hero en tête statique"
         }
     },
+    "featuredProducts": {
+        "title": "Nouveau",
+        "baseline": "Découvrez la sélection du mois de {{month}}"
+    },
     "footer": {
         "sections": {
             "collections": {

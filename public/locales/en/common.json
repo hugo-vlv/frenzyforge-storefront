@@ -5,6 +5,10 @@
             "header": "Hero header placeholder"
         }
     },
+    "featuredProducts": {
+        "title": "New models",
+        "baseline": "Check out our new models, picked this month ({{month}})."
+    },
     "footer": {
         "sections": {
             "collections": {

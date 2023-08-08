@@ -1,6 +1,19 @@
 .hero {
-    background: var(--color-secondary);
-    background: linear-gradient(190deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    // background: var(--color-secondary);
+    // background: linear-gradient(200deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+}
+
+.scene {
+    pointer-events: all;
+    position: absolute;
+    background: linear-gradient(200deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+    // TODO: replace with -1 when done
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    flex: 1;
 }
 
 .content {
@@ -17,6 +30,10 @@
 }
 
 @media (min-width: 1024px) {
+    .hero {
+        min-height: 770px;
+    }
+
     .content {
         padding: 12rem 8rem;
 
@@ -38,14 +55,18 @@
 
 @media (max-width: 1023px) {
     .content {
-        flex-direction: column-reverse;
+        // flex-direction: column-reverse;
+        padding: 8rem 2rem 0 2rem;
 
         .left {
             flex: 1;
             text-align: left;
-            padding: 8rem;
             justify-content: flex-start;
             align-items: flex-start;
+        }
+
+        .right {
+            display: none;
         }
     }
 }

@@ -39,7 +39,6 @@ const Nav: React.FC<NavProps> = () => {
 
         <div className="flex items-center h-full">
           <Link passHref href="/" className="relative h-20 w-20">
-
             <Image
               src="/logo_cropped.png"
               fill

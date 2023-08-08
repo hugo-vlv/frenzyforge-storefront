@@ -1,59 +1,62 @@
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { Listbox, Transition } from "@headlessui/react";
-import { useStore } from "@lib/context/store-context";
 import useToggleState from "@lib/hooks/use-toggle-state";
-import { useRegions } from "medusa-react";
-import { Fragment, useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import ReactCountryFlag from "react-country-flag";
 
-type CountryOption = {
-  country: string
-  region: string
-  label: string
+type LocaleOption = {
+  value: string,
+  country: string,
+  label: string,
 }
 
-const CountrySelect = () => {
-  const { countryCode, setRegion } = useStore();
-  const { regions } = useRegions();
-  const [current, setCurrent] = useState<CountryOption | undefined>(undefined);
-  const { state, open, close } = useToggleState();
+const locales = [
+  {
+    value: 'en',
+    country: 'gb',
+    label: "English"
+  },
+  {
+    value: 'fr',
+    country: 'fr',
+    label: "Français"
+  }
+];
 
-  const options: CountryOption[] | undefined = useMemo(() => {
-    return regions
-      ?.map((r) => {
-        return r.countries.map((c) => ({
-          country: c.iso_2,
-          region: r.id,
-          label: c.display_name,
-        }));
-      })
-      .flat();
-  }, [regions]);
+const CountrySelect = () => {
+  const { locale, pathname, asPath, query, push } = useRouter();
+  const { t } = useTranslation('common');
+  const [current, setCurrent] = useState<LocaleOption | undefined>(undefined);
+  const { state, open, close } = useToggleState();
+  
+  const options: LocaleOption[] | undefined = locales;
 
   useEffect(() => {
-    if (countryCode) {
-      const option = options?.find((o) => o.country === countryCode);
+    if (locale) {
+      const option = options.find((o) => o.value === locale);
       setCurrent(option);
     }
-  }, [countryCode, options]);
+  }, [locale, options]);
 
-  const handleChange = (option: CountryOption) => {
-    setRegion(option.region, option.country);
+  const handleChange = (option: LocaleOption) => {
+    push({ pathname, query }, asPath, { locale: option.value, scroll: false });
     close();
-  };
+  };  
 
   return (
     <div onMouseEnter={open} onMouseLeave={close}>
       <Listbox
         onChange={handleChange}
         defaultValue={
-          countryCode
-            ? options?.find((o) => o.country === countryCode)
+          locale
+            ? options?.find((o) => o.country === locale)
             : undefined
         }
       >
         <Listbox.Button className="py-1 w-full">
           <div className="text-small-regular flex items-center gap-x-2 xsmall:justify-end">
-            <span>Shipping to:</span>
+            <span>{t('footer.switchLanguage')}</span>
             {current && (
               <span className="text-small-semi flex items-center gap-x-2">
                 <ReactCountryFlag
@@ -78,7 +81,7 @@ const CountrySelect = () => {
             leaveTo="opacity-0"
           >
             <Listbox.Options
-              className="absolute -bottom-[calc(100%-36px)] left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar"
+              className="absolute -bottom-[calc(100%-36px)] left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular text-black no-scrollbar"
               static
             >
               {options?.map((o, index) => {

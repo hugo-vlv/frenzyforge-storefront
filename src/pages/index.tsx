@@ -12,14 +12,14 @@ const Home: NextPageWithLayout = () => {
   const { t } = useTranslation('common');
 
   return (
-    <Layout>
+    <>
       <Head
         title={t('home.title') || undefined}
         description="Shop all available models only at the ACME. Worldwide Shipping. Secure Payment."
       />
       <Hero />
       <FeaturedProducts />
-    </Layout>
+    </>
   );
 };
 

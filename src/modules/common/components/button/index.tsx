@@ -2,7 +2,7 @@ import Spinner from "@modules/common/icons/spinner";
 import clsx from "clsx";
 import React from "react";
 
-import styles from './index.module.css';
+import styles from './index.module.scss';
 
 type ButtonProps = {
   isLoading?: boolean
